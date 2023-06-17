@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  outline: none;
+  font-family: "Roboto", -apple-system, system-ui, sans-serif;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.todo {
+  width: 746px;
+  height: 530px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 7px 10px #f4f6f8;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 16px;
+
+  &__sidebar {
+    background-color: #f4f6f8;
+    width: 200px;
+    height: 100%;
+    border-right: 1px solid #fff1f1;
+  }
+
+  .field {
+    background: #ffffff;
+    border: 1px solid #efefef;
+    border-radius: 4px;
+    padding: 8px 12px;
+    width: 100%;
+
+    &:focus {
+      border-color: #c9c4c4;
+    }
+    &::placeholder {
+      color: #c9c4c4;
+    }
+  }
+  .button {
+    background: #4dd599;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    cursor: pointer;
+
+    &:hover {
+      background: darken($color: #4dd599, $amount: 10%);
+    }
+    &:active {
+      background: darken($color: #4dd599, $amount: 20%);
+    }
+  }
+}
