@@ -10,16 +10,7 @@ function AddListPopup() {
         placeholder="Название папки"
         type="text"
       />
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <ul></ul>
       <button className="add-popup__button button">Добавить</button>
     </div>
   );
