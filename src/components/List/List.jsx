@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import AddListPopup from "../AddListPopup/AddListPopup";
 
 import "./List.scss";
+import Badge from "../Badge/Badge";
 
-function List({}) {
+function List() {
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -46,7 +47,7 @@ function List({}) {
     },
     {
       id: 3,
-      color: "white-red",
+      color: "red",
       title: "Фильмы и сериалы",
       active: false,
       deleteIcon: (
@@ -66,7 +67,7 @@ function List({}) {
     },
     {
       id: 4,
-      color: "white-green",
+      color: "lime",
       title: "Книги",
       active: true,
       deleteIcon: (
@@ -86,7 +87,7 @@ function List({}) {
     },
     {
       id: 5,
-      color: "gray",
+      color: "grey",
       title: "Личное",
       active: false,
       deleteIcon: (
@@ -137,28 +138,20 @@ function List({}) {
               className={task.active ? "active" : ""}
               key={task.id}
             >
-              {task.icon ? (
-                <i>{task.icon}</i>
-              ) : (
-                <i className={`badge badge-${task.color}`}></i>
-              )}
+              {task.icon ? <i>{task.icon}</i> : <Badge color={task.color} />}
               <span>{task.title}</span>
               {task.active ? <i className="delete">{task.deleteIcon}</i> : ""}
             </li>
           ) : (
             <li className={task.active ? "active" : ""} key={task.id}>
-              {task.icon ? (
-                <i>{task.icon}</i>
-              ) : (
-                <i className={`badge badge-${task.color}`}></i>
-              )}
+              {task.icon ? <i>{task.icon}</i> : <Badge color={task.color} />}
               <span>{task.title}</span>
               {task.active ? <i className="delete">{task.deleteIcon}</i> : ""}
             </li>
           );
         })}
       </ul>
-      {popup && <AddListPopup />}
+      {popup && <AddListPopup setPopup={setPopup} />}
     </div>
   );
 }

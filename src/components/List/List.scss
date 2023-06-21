@@ -9,6 +9,9 @@
       flex-direction: row;
       align-items: center;
       padding-left: 12px;
+      &:hover {
+        color: darken($color: #5c5656, $amount: 10%);
+      }
 
       &.active {
         background: #ffffff;
@@ -18,25 +21,12 @@
       }
       i {
         margin-right: 10px;
-
         &.badge {
-          display: inline-flex;
+          display: inline-block;
           width: 8px;
           height: 8px;
-          border-radius: 50%;
-          &-green {
-            background-color: green;
-          }
-          &-white-red {
-            background-color: #ffbbcc;
-          }
-          &-white-green {
-            background-color: #b6e6bd;
-          }
-          &-grey {
-            background-color: #c9d1d3;
-          }
         }
+
         &.delete {
           margin: 0;
 
