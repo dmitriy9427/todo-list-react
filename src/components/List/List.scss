@@ -54,14 +54,14 @@
       &:last-child {
         margin-top: 40px;
         color: #a99494;
-        transition: all 1s ease;
+
         &:hover {
-          path {
-            transition: all 1s ease;
-            fill: black;
-            opacity: 1;
-          }
           color: black;
+
+          path {
+            transition: all 0.7s ease;
+            stroke: black;
+          }
         }
       }
     }

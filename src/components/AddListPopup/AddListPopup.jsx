@@ -4,56 +4,30 @@ import closeSvg from "../../images/close.svg";
 
 import "./AddListPopup.scss";
 
-function AddListPopup({ setPopup }) {
-  const [colors, setColors] = useState([
-    {
-      id: 1,
-      hex: "#C9D1D3",
-      name: "grey",
-    },
-    {
-      id: 2,
-      hex: "#42B883",
-      name: "green",
-    },
-    {
-      id: 3,
-      hex: "#64C4ED",
-      name: "blue",
-    },
-    {
-      id: 4,
-      hex: "#FFBBCC",
-      name: "pink",
-    },
-    {
-      id: 5,
-      hex: "#B6E6BD",
-      name: "lime",
-    },
-    {
-      id: 6,
-      hex: "#C355F5",
-      name: "purple",
-    },
-    {
-      id: 7,
-      hex: "#110133",
-      name: "black",
-    },
-    {
-      id: 8,
-      hex: "#FF6464",
-      name: "red",
-    },
-  ]);
+function AddListPopup({ colors, setPopup, addNewItem }) {
   const [selectedColor, setSelectedColor] = useState(colors[0].id);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleClosePopup = () => {
+    setInputValue("");
+    setSelectedColor(colors[0].id);
+    setPopup(false);
+  };
+
+  const addItem = () => {
+    const obj = { id: new Date(), name: inputValue, colorId: selectedColor };
+
+    addNewItem(obj);
+    handleClosePopup();
+  };
 
   return (
     <div className="add-popup">
       <input
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         className="add-popup__input field"
-        placeholder="Название папки"
+        placeholder="Название списка"
         type="text"
       />
       <ul className="add-popup__list">
@@ -71,9 +45,35 @@ function AddListPopup({ setPopup }) {
           </li>
         ))}
       </ul>
-      <button className="add-popup__button button">Добавить</button>
+
+      {!inputValue ? (
+        <>
+          <button
+            disabled
+            onClick={addItem}
+            className="add-popup__button button"
+          >
+            Добавить
+          </button>
+          <span
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              color: "red",
+              fontSize: "10px",
+            }}
+          >
+            Название не должно быть пустым
+          </span>
+        </>
+      ) : (
+        <button onClick={addItem} className="add-popup__button button">
+          Добавить
+        </button>
+      )}
+
       <img
-        onClick={() => setPopup(false)}
+        onClick={handleClosePopup}
         className="add-popup__remove"
         src={closeSvg}
         alt="Кнопка закрыть"

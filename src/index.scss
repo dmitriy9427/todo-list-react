@@ -23,12 +23,19 @@ body {
   border-radius: 10px;
   overflow: hidden;
   font-size: 16px;
+  overflow: auto;
 
   &__sidebar {
     background-color: #f4f6f8;
     width: 200px;
     height: 100%;
     border-right: 1px solid #fff1f1;
+  }
+  li {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+      font-weight: 500;
+    }
   }
 
   .field {
