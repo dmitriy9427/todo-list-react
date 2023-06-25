@@ -1,6 +1,9 @@
-.list {
+.todo {
+  display: flex;
   .todo__list {
-    padding: 60px 20px 0;
+    padding: 60px 20px;
+    $self: ".todo__list";
+
     li {
       cursor: pointer;
       margin-bottom: 10px;
@@ -9,16 +12,23 @@
       flex-direction: row;
       align-items: center;
       padding-left: 12px;
-      &:hover {
-        color: darken($color: #5c5656, $amount: 10%);
+
+      &:hover #{$self}-delete {
+        opacity: 0.4;
+        transition: opacity 0.6s ease;
       }
 
-      &.active {
-        background: #ffffff;
-        box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.05);
-        border-radius: 4px;
-        padding: 10px 12px;
+      #{$self}-delete {
+        width: 20px;
+        height: 20px;
+        margin: 0 5px 0 0;
+        opacity: 0;
+
+        &:hover {
+          opacity: 1;
+        }
       }
+
       i {
         margin-right: 10px;
         &.badge {
@@ -26,27 +36,14 @@
           width: 8px;
           height: 8px;
         }
-
-        &.delete {
-          margin: 0;
-
-          &:hover {
-            color: black;
-            path {
-              transition: all 1s ease;
-              fill: black;
-              opacity: 1;
-            }
-          }
-        }
       }
-
       span {
         width: 125px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
       &:first-child {
         margin-bottom: 40px;
       }
@@ -65,5 +62,10 @@
         }
       }
     }
+  }
+  .todo__tasks {
+    flex: 1;
+    width: 650px;
+    padding: 60px;
   }
 }

@@ -11,7 +11,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.todo {
+.todo-app {
+  display: grid;
+  grid-template-columns: 200px 545px;
   width: 746px;
   height: 530px;
   position: absolute;
@@ -23,18 +25,19 @@ body {
   border-radius: 10px;
   overflow: hidden;
   font-size: 16px;
-  overflow: auto;
 
-  &__sidebar {
+  .todo__sidebar {
     background-color: #f4f6f8;
     width: 200px;
     height: 100%;
     border-right: 1px solid #fff1f1;
   }
   li {
+    transition: all 0.7s ease;
+    padding: 0;
+    margin: 0;
     &:hover {
       background-color: rgba(255, 255, 255, 0.5);
-      font-weight: 500;
     }
   }
 

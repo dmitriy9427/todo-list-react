@@ -4,7 +4,7 @@ import closeSvg from "../../images/close.svg";
 
 import "./AddListPopup.scss";
 
-function AddListPopup({ colors, setPopup, addNewItem }) {
+function AddListPopup({ colors, setPopup, popup, addNewItem }) {
   const [selectedColor, setSelectedColor] = useState(colors[0].id);
   const [inputValue, setInputValue] = useState("");
 
@@ -22,7 +22,7 @@ function AddListPopup({ colors, setPopup, addNewItem }) {
   };
 
   return (
-    <div className="add-popup">
+    <div className={`add-popup ${popup && "open"}`}>
       <input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}

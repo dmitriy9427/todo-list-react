@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import AddListPopup from "../AddListPopup/AddListPopup";
 import Badge from "../Badge/Badge";
+import TodoTasks from "../TodoTasks/TodoTasks";
 import DB from "../../assets/db.json";
-import remove from "../../images/delete.svg";
+import delet from "../../images/delete.svg";
 
 import "./List.scss";
 
@@ -15,8 +16,18 @@ function List() {
     setLists(newList);
   }
 
+  const onRemove = (item) => {
+    console.log(item);
+  };
+
+  const removeItem = (item) => {
+    if (window.confirm("Вы действительно хотите удалить?")) {
+      onRemove(item);
+    }
+  };
+
   return (
-    <div className="list">
+    <div className="todo">
       <ul className="todo__list">
         <li>
           <i>
@@ -44,10 +55,15 @@ function List() {
             />
 
             <span>{task.name}</span>
-            {task.active ? <i className="delete">{remove}</i> : ""}
+            <img
+              onClick={() => removeItem(task)}
+              className="todo__list-delete"
+              src={delet}
+              alt="Иконка удаления"
+            />
           </li>
         ))}
-        <li onClick={() => setPopup(!popup)}>
+        <li onClick={() => setPopup(true)}>
           <i>
             <svg
               width="12"
@@ -75,13 +91,17 @@ function List() {
           <span>Добавить папку</span>
         </li>
       </ul>
-      {popup && (
-        <AddListPopup
-          addNewItem={addNewItem}
-          colors={DB.colors}
-          setPopup={setPopup}
-        />
-      )}
+
+      <AddListPopup
+        addNewItem={addNewItem}
+        colors={DB.colors}
+        setPopup={setPopup}
+        popup={popup}
+      />
+
+      <div className="todo__tasks">
+        <TodoTasks />
+      </div>
     </div>
   );
 }

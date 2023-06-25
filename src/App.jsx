@@ -3,7 +3,7 @@ import List from "./components/List/List";
 
 function App() {
   return (
-    <div className="todo">
+    <div className="todo-app">
       <div className="todo__sidebar">
         <List />
       </div>

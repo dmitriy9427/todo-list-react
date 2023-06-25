@@ -1,4 +1,27 @@
+@keyframes out {
+  from {
+    transform: scale(100%);
+    overflow: visible;
+  }
+  to {
+    transform: scale(0);
+    overflow: hidden;
+  }
+}
+
+@keyframes in {
+  from {
+    transform: scale(0);
+    overflow: hidden;
+  }
+  to {
+    transform: scale(100%);
+    overflow: visible;
+  }
+}
+
 .add-popup {
+  overflow: hidden;
   position: fixed;
   bottom: 20%;
   left: 25%;
@@ -10,6 +33,14 @@
   margin: 15px 0 0 28px;
   padding: 18px;
   z-index: 1;
+  transform: scale(0);
+  animation: out 1s;
+
+  &.open {
+    transform: scale(100%);
+    overflow: visible;
+    animation: in 1s;
+  }
 
   &__input {
     box-sizing: border-box;
