@@ -1,36 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddListPopup from "../AddListPopup/AddListPopup";
 import Badge from "../Badge/Badge";
 import TodoTasks from "../TodoTasks/TodoTasks";
-import DB from "../../assets/db.json";
+
 import delet from "../../images/delete.svg";
 
 import "./List.scss";
 
-function List() {
-  const [lists, setLists] = useState(DB.lists);
+function List({ lists, addNewItem, removeItem, colors }) {
   const [popup, setPopup] = useState(false);
-
-  function addNewItem(obj) {
-    const newList = [...lists, obj];
-    setLists(newList);
-  }
-
-  const onRemove = (item) => {
-    console.log(item);
-  };
-
-  const removeItem = (item) => {
-    if (window.confirm("Вы действительно хотите удалить?")) {
-      onRemove(item);
-    }
-  };
 
   return (
     <div className="todo">
       <ul className="todo__list">
-        <li>
-          <i>
+        <li className="todo__list-item">
+          <i className="todo__list-i">
             <svg
               width="14"
               height="12"
@@ -44,25 +28,23 @@ function List() {
               />
             </svg>
           </i>
-          <span>Все задачи</span>
+          <span className="todo__list-span">Все задачи</span>
         </li>
-        {lists.map((task) => (
-          <li key={task.id}>
-            <Badge
-              color={
-                DB.colors.filter((color) => color.id === task.colorId)[0].name
-              }
-            />
+        {lists
+          ? lists.map((task) => (
+              <li className="todo__list-item" key={task.id}>
+                <Badge color={task.color.name} />
 
-            <span>{task.name}</span>
-            <img
-              onClick={() => removeItem(task)}
-              className="todo__list-delete"
-              src={delet}
-              alt="Иконка удаления"
-            />
-          </li>
-        ))}
+                <span>{task.name}</span>
+                <img
+                  onClick={() => removeItem(task)}
+                  className="todo__list-delete"
+                  src={delet}
+                  alt="Иконка удаления"
+                />
+              </li>
+            ))
+          : "Загрузка..."}
         <li onClick={() => setPopup(true)}>
           <i>
             <svg
@@ -94,7 +76,7 @@ function List() {
 
       <AddListPopup
         addNewItem={addNewItem}
-        colors={DB.colors}
+        colors={colors}
         setPopup={setPopup}
         popup={popup}
       />

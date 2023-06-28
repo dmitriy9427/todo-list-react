@@ -5,27 +5,36 @@ import closeSvg from "../../images/close.svg";
 import "./AddListPopup.scss";
 
 function AddListPopup({ colors, setPopup, popup, addNewItem }) {
-  const [selectedColor, setSelectedColor] = useState(colors[0].id);
+  const [selectedColor, setSelectedColor] = useState(1);
   const [inputValue, setInputValue] = useState("");
 
   const handleClosePopup = () => {
     setInputValue("");
-    setSelectedColor(colors[0].id);
+    setSelectedColor(1);
     setPopup(false);
   };
 
   const addItem = () => {
-    const obj = { id: new Date(), name: inputValue, colorId: selectedColor };
+    const obj = {
+      id: new Date(),
+      name: inputValue,
+      colorId: selectedColor,
+      color: {
+        id: new Date(),
+      },
+    };
 
     addNewItem(obj);
     handleClosePopup();
   };
 
+  const v = (e) => setInputValue(e.target.value);
+
   return (
     <div className={`add-popup ${popup && "open"}`}>
       <input
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={v}
         className="add-popup__input field"
         placeholder="Название списка"
         type="text"

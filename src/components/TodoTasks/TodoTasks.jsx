@@ -7,13 +7,17 @@ import "./TodoTasks.scss";
 
 function TodoTasks() {
   return (
-    <div className="t">
-      <div className="tasks">
-        <h2 className="tasks__title">Фротенд</h2>
-        <img src={edit} alt="Иконка редактирования" />
-      </div>
+    <div className="tasks">
+      <h2 className="tasks__title">
+        Фротенд
+        <img
+          className="tasks__title-image"
+          src={edit}
+          alt="Иконка редактирования"
+        />
+      </h2>
 
-      <ul>
+      <ul className="tasks__list">
         <li>
           <div className="checkbox">
             <input id="check" type="checkbox" />
@@ -35,17 +39,28 @@ function TodoTasks() {
               </svg>
             </label>
           </div>
-          <input className="t__input" value="Изучить паттерны проектирования" />
+          <input
+            className="tasks__input"
+            value="Изучить паттерны проектирования"
+          />
           <img
-            className="t__image-edit"
+            className="tasks__image-edit"
             src={edit}
             alt="Иконка редактирования"
           />
-          <img className="t__image-delete" src={delet} alt="Иконка удаления" />
+          <img
+            className="tasks__image-delete"
+            src={delet}
+            alt="Иконка удаления"
+          />
         </li>
         <li>
-          <img className="t__image-plus" src={plus} alt="Иконка добавления" />
-          <span className="t__text">Новая задача</span>
+          <img
+            className="tasks__image-plus"
+            src={plus}
+            alt="Иконка добавления"
+          />
+          <span className="tasks__text">Новая задача</span>
         </li>
       </ul>
     </div>

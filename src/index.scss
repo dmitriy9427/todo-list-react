@@ -12,8 +12,6 @@ body {
 }
 
 .todo-app {
-  display: grid;
-  grid-template-columns: 200px 545px;
   width: 746px;
   height: 530px;
   position: absolute;
@@ -26,15 +24,16 @@ body {
   overflow: hidden;
   font-size: 16px;
 
-  .todo__sidebar {
+  &__sidebar {
     background-color: #f4f6f8;
     width: 200px;
     height: 100%;
     border-right: 1px solid #fff1f1;
+    padding: 60px 20px;
   }
   li {
     transition: all 0.7s ease;
-    padding: 0;
+    padding: 5px;
     margin: 0;
     &:hover {
       background-color: rgba(255, 255, 255, 0.5);
