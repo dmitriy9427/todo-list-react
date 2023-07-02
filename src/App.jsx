@@ -12,12 +12,15 @@ function App() {
   }
 
   const onRemove = (item) => {
-    console.log(item);
+    const newLists = lists.filter((i) => i.id !== item);
+    setLists(newLists);
   };
 
   const removeItem = (item) => {
     if (window.confirm("Вы действительно хотите удалить?")) {
-      onRemove(item);
+      axios.delete("http://localhost:3001/lists/" + item.id).then(() => {
+        onRemove(item.id);
+      });
     }
   };
 

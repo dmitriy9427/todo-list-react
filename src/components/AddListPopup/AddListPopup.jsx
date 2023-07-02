@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Badge from "../Badge/Badge";
 import closeSvg from "../../images/close.svg";
 
@@ -6,26 +7,37 @@ import "./AddListPopup.scss";
 
 function AddListPopup({ colors, setPopup, popup, addNewItem }) {
   const [selectedColor, setSelectedColor] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    if (Array.isArray(colors)) {
+      setSelectedColor(colors[0].id);
+    }
+  }, [colors]);
 
   const handleClosePopup = () => {
     setInputValue("");
-    setSelectedColor(1);
+    setSelectedColor(colors[0].id);
     setPopup(false);
   };
 
   const addItem = () => {
-    const obj = {
-      id: new Date(),
-      name: inputValue,
-      colorId: selectedColor,
-      color: {
-        id: new Date(),
-      },
-    };
-
-    addNewItem(obj);
-    handleClosePopup();
+    setIsLoading(true);
+    axios
+      .post("http://localhost:3001/lists", {
+        name: inputValue,
+        colorId: selectedColor,
+      })
+      .then(({ data }) => {
+        const color = colors.filter((c) => c.id === selectedColor)[0].name;
+        const newObj = { ...data, color: { name: color } };
+        addNewItem(newObj);
+        handleClosePopup();
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const v = (e) => setInputValue(e.target.value);
@@ -40,7 +52,7 @@ function AddListPopup({ colors, setPopup, popup, addNewItem }) {
         type="text"
       />
       <ul className="add-popup__list">
-        {colors.map((color) => (
+        {colors?.map((color) => (
           <li
             key={color.hex}
             className="add-popup__item"
@@ -77,7 +89,7 @@ function AddListPopup({ colors, setPopup, popup, addNewItem }) {
         </>
       ) : (
         <button onClick={addItem} className="add-popup__button button">
-          Добавить
+          {isLoading ? "Добавление..." : "Добавить"}
         </button>
       )}
 

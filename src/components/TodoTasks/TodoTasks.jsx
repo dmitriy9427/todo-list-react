@@ -41,7 +41,7 @@ function TodoTasks() {
           </div>
           <input
             className="tasks__input"
-            value="Изучить паттерны проектирования"
+            // value="Изучить паттерны проектирования"
           />
           <img
             className="tasks__image-edit"
