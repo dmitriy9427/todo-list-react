@@ -7,7 +7,14 @@ import delet from "../../images/delete.svg";
 
 import "./List.scss";
 
-function List({ lists, addNewItem, removeItem, colors }) {
+function List({
+  lists,
+  addNewItem,
+  removeItem,
+  colors,
+  onClickItem,
+  activeItem,
+}) {
   const [popup, setPopup] = useState(false);
 
   return (
@@ -32,7 +39,13 @@ function List({ lists, addNewItem, removeItem, colors }) {
         </li>
         {lists
           ? lists.map((task) => (
-              <li className="todo__list-item" key={task.id}>
+              <li
+                className={`${
+                  activeItem && activeItem.id === task.id && "active"
+                }`}
+                onClick={onClickItem ? () => onClickItem(task) : null}
+                key={task.id}
+              >
                 <Badge color={task.color.name} />
 
                 <span>{task.name}</span>
@@ -82,7 +95,7 @@ function List({ lists, addNewItem, removeItem, colors }) {
       />
 
       <div className="todo__tasks">
-        <TodoTasks />
+        {lists && activeItem && <TodoTasks list={activeItem} />}
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import axios from "axios";
 function App() {
   const [lists, setLists] = useState(null);
   const [colors, setColors] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);
 
   function addNewItem(obj) {
     const newList = [...lists, obj];
@@ -25,9 +26,11 @@ function App() {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3001/lists?_expand=color").then(({ data }) => {
-      setLists(data);
-    });
+    axios
+      .get("http://localhost:3001/lists?_expand=color&_embed=tasks")
+      .then(({ data }) => {
+        setLists(data);
+      });
     axios.get("http://localhost:3001/colors").then(({ data }) => {
       setColors(data);
     });
@@ -41,6 +44,8 @@ function App() {
           removeItem={removeItem}
           colors={colors}
           addNewItem={addNewItem}
+          onClickItem={(i) => setActiveItem(i)}
+          activeItem={activeItem}
         />
       </div>
     </div>

@@ -2,6 +2,18 @@
 // display: flex;
 // flex-direction: column;
 .tasks {
+  h3 {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    color: #c9d1d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 102px auto;
+  }
   &__title {
     color: #64c4ed;
     font-family: Montserrat;
@@ -91,15 +103,16 @@
           }
         }
       }
-      &:last-child {
-        margin-top: 25px;
-        opacity: 0.3;
-        cursor: pointer;
-        transition: opacity 0.7s ease-in-out;
-        &:hover {
-          opacity: 0.8;
-        }
-      }
+    }
+  }
+  &__plus-block {
+    display: flex;
+    margin-top: 25px;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity 0.7s ease-in-out;
+    &:hover {
+      opacity: 0.8;
     }
   }
 
