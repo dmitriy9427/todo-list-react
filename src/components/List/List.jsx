@@ -48,7 +48,10 @@ function List({
               >
                 <Badge color={task.color.name} />
 
-                <span>{task.name}</span>
+                <span>
+                  {task.name}
+                  {` (${task.tasks.length})`}
+                </span>
                 <img
                   onClick={() => removeItem(task)}
                   className="todo__list-delete"
