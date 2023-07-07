@@ -5,13 +5,20 @@ import plus from "../../images/plus.svg";
 
 import "./TodoTasks.scss";
 
-function TodoTasks({ list }) {
+function TodoTasks({ list, onEditTitle }) {
+  function editTitle(id, title) {
+    if (list.id === id) {
+      console.log(list.name);
+    }
+  }
+
   return (
     <div className="tasks">
       <h2 className="tasks__title">
         {list.name}
         <img
           className="tasks__title-image"
+          onClick={() => onEditTitle(list.id, list.name)}
           src={edit}
           alt="Иконка редактирования"
         />

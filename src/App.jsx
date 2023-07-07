@@ -25,6 +25,20 @@ function App() {
     }
   };
 
+  function onEditTitle(id, title) {
+    const newTitile = window.prompt("Введите название списка", title);
+    if (newTitile) {
+      lists.map((item) => {
+        if (item.id === id) {
+          item.name = title;
+        }
+      });
+    } else {
+      return;
+    }
+    setLists(newTitile);
+  }
+
   useEffect(() => {
     axios
       .get("http://localhost:3001/lists?_expand=color&_embed=tasks")
@@ -46,6 +60,7 @@ function App() {
           addNewItem={addNewItem}
           onClickItem={(i) => setActiveItem(i)}
           activeItem={activeItem}
+          onEditTitle={onEditTitle}
         />
       </div>
     </div>

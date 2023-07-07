@@ -14,6 +14,7 @@ function List({
   colors,
   onClickItem,
   activeItem,
+  onEditTitle,
 }) {
   const [popup, setPopup] = useState(false);
 
@@ -98,7 +99,9 @@ function List({
       />
 
       <div className="todo__tasks">
-        {lists && activeItem && <TodoTasks list={activeItem} />}
+        {lists && activeItem && (
+          <TodoTasks onEditTitle={onEditTitle} list={activeItem} />
+        )}
       </div>
     </div>
   );
