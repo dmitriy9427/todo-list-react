@@ -3,8 +3,8 @@
 ## Технологии:
 
 - Хуки ReactJS (useState, useEffect)
-
-* Axios
+- Axios
+- SCSS
 
 ## Описание:
 
