@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/dmitriy9427/todo-list-react/static/css/main.a58ed7b8.css",
-    "main.js": "/dmitriy9427/todo-list-react/static/js/main.d2f5788f.js",
-    "static/media/close.svg": "/dmitriy9427/todo-list-react/static/media/close.ac7b9278cab353907f42c5983ebc5569.svg",
-    "index.html": "/dmitriy9427/todo-list-react/index.html",
-    "static/media/edit.svg": "/dmitriy9427/todo-list-react/static/media/edit.3a83f6ad83a422e21a4de0bd5b2836cf.svg",
-    "static/media/plus.svg": "/dmitriy9427/todo-list-react/static/media/plus.2c7dee90aec26a4ab0f9f926da8b620e.svg",
-    "static/media/delete.svg": "/dmitriy9427/todo-list-react/static/media/delete.571239a91539db891d8d9d159361fe03.svg",
-    "main.a58ed7b8.css.map": "/dmitriy9427/todo-list-react/static/css/main.a58ed7b8.css.map",
-    "main.d2f5788f.js.map": "/dmitriy9427/todo-list-react/static/js/main.d2f5788f.js.map"
+    "main.css": "/todo-list-react/static/css/main.a58ed7b8.css",
+    "main.js": "/todo-list-react/static/js/main.82e50255.js",
+    "static/media/close.svg": "/todo-list-react/static/media/close.ac7b9278cab353907f42c5983ebc5569.svg",
+    "static/media/edit.svg": "/todo-list-react/static/media/edit.3a83f6ad83a422e21a4de0bd5b2836cf.svg",
+    "index.html": "/todo-list-react/index.html",
+    "static/media/plus.svg": "/todo-list-react/static/media/plus.2c7dee90aec26a4ab0f9f926da8b620e.svg",
+    "static/media/delete.svg": "/todo-list-react/static/media/delete.571239a91539db891d8d9d159361fe03.svg",
+    "main.a58ed7b8.css.map": "/todo-list-react/static/css/main.a58ed7b8.css.map",
+    "main.82e50255.js.map": "/todo-list-react/static/js/main.82e50255.js.map"
   },
   "entrypoints": [
     "static/css/main.a58ed7b8.css",
-    "static/js/main.d2f5788f.js"
+    "static/js/main.82e50255.js"
   ]
 }
