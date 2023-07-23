@@ -17,26 +17,38 @@ function App() {
     setLists(newLists);
   };
 
+  // удаение списка задач
   const removeItem = (item) => {
     if (window.confirm("Вы действительно хотите удалить?")) {
-      axios.delete("http://localhost:3001/lists/" + item.id).then(() => {
-        onRemove(item.id);
-      });
+      axios
+        .delete("http://localhost:3001/lists/" + item.id)
+        .then(() => {
+          onRemove(item.id);
+        })
+        .catch(() => {
+          alert("Не удалось удалить список.");
+        });
     }
   };
 
   function onEditTitle(id, title) {
-    const newTitile = window.prompt("Введите название списка", title);
-    if (newTitile) {
-      lists.map((item) => {
-        if (item.id === id) {
-          item.name = title;
-        }
-      });
-    } else {
-      return;
-    }
-    setLists(newTitile);
+    const newTitle = lists.map((item) => {
+      if (item.id === id) {
+        item.name = title;
+      }
+      return item;
+    });
+    setLists(newTitle);
+  }
+
+  function addTask(listId, listObj) {
+    const newList = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks = [...item.tasks, listObj];
+      }
+      return item;
+    });
+    setLists(newList);
   }
 
   useEffect(() => {
@@ -44,10 +56,18 @@ function App() {
       .get("http://localhost:3001/lists?_expand=color&_embed=tasks")
       .then(({ data }) => {
         setLists(data);
+      })
+      .catch((err) => {
+        alert(err);
       });
-    axios.get("http://localhost:3001/colors").then(({ data }) => {
-      setColors(data);
-    });
+    axios
+      .get("http://localhost:3001/colors")
+      .then(({ data }) => {
+        setColors(data);
+      })
+      .catch((err) => {
+        alert("Что то пошло не так при получании цветов.");
+      });
   }, []);
 
   return (
@@ -61,6 +81,8 @@ function App() {
           onClickItem={(i) => setActiveItem(i)}
           activeItem={activeItem}
           onEditTitle={onEditTitle}
+          addTask={addTask}
+          // removeTask={removeTask}
         />
       </div>
     </div>

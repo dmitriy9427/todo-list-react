@@ -2,6 +2,7 @@
 // display: flex;
 // flex-direction: column;
 .tasks {
+  display: block;
   h3 {
     font-family: "Montserrat";
     font-style: normal;
@@ -117,6 +118,9 @@
   }
 
   &__input {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     width: 100%;
     border: none;
     cursor: default;
@@ -153,5 +157,51 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 19px;
+  }
+  &__popup {
+    display: flex;
+    flex-direction: column;
+    &-input {
+      border: 1px solid #efefef;
+      padding: 9px 0 8px 14px;
+      margin: 0 0 16px;
+      &::placeholder {
+        color: #c7c7c7;
+        font-family: Lato;
+        font-size: 14px;
+      }
+    }
+    &-add {
+      width: 145px;
+      height: 34px;
+      font-family: Lato;
+      font-size: 14px;
+      line-height: 17px;
+      margin-right: 10px;
+      cursor: pointer;
+      &:disabled {
+        background: #9c9c9c;
+        cursor: not-allowed;
+        &:hover {
+          background: #9c9c9c;
+        }
+      }
+    }
+    &-cancel {
+      cursor: pointer;
+      width: 90px;
+      height: 34px;
+      font-family: Lato;
+      font-size: 14px;
+      line-height: 17px;
+      color: #9c9c9c;
+      background-color: #f4f6f8;
+      border: none;
+      border-radius: 4px;
+      transition: background 0.7s ease;
+      &:hover {
+        background: darken($color: #f4f6f8, $amount: 4);
+      }
+    }
   }
 }

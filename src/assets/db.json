@@ -12,13 +12,8 @@
     },
     {
       "id": 4,
-      "name": "Книги",
+      "name": "Какие книги будем покупать?",
       "colorId": 2
-    },
-    {
-      "name": "Спорт",
-      "colorId": 3,
-      "id": 6
     },
     {
       "name": "Курс по ReactJS ToDo",
@@ -26,14 +21,14 @@
       "id": 7
     },
     {
-      "name": "Настроить параметры",
-      "colorId": 3,
-      "id": 11
+      "name": "Задачи на сегодня.",
+      "colorId": 5,
+      "id": 8
     },
     {
-      "name": "rtyrty",
-      "colorId": 3,
-      "id": 12
+      "name": "Спорт",
+      "colorId": 4,
+      "id": 9
     }
   ],
   "tasks": [
@@ -96,6 +91,30 @@
       "text": "Сделали удаление и редактирование задач и списков",
       "completed": true,
       "id": 17
+    },
+    {
+      "listId": 2,
+      "text": "dsf",
+      "completed": false,
+      "id": 18
+    },
+    {
+      "listId": 8,
+      "text": "sdf",
+      "completed": false,
+      "id": 19
+    },
+    {
+      "listId": 8,
+      "text": "Приготовить покушать!",
+      "completed": false,
+      "id": 20
+    },
+    {
+      "listId": 8,
+      "text": "Почитать книгу.",
+      "completed": false,
+      "id": 21
     }
   ],
   "colors": [

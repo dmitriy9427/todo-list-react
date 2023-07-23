@@ -15,6 +15,8 @@ function List({
   onClickItem,
   activeItem,
   onEditTitle,
+  addTask,
+  removeTask,
 }) {
   const [popup, setPopup] = useState(false);
 
@@ -51,7 +53,7 @@ function List({
 
                 <span>
                   {task.name}
-                  {` (${task.tasks.length})`}
+                  {/* {` (${task.tasks.length})`} */}
                 </span>
                 <img
                   onClick={() => removeItem(task)}
@@ -99,8 +101,13 @@ function List({
       />
 
       <div className="todo__tasks">
-        {lists && activeItem && (
-          <TodoTasks onEditTitle={onEditTitle} list={activeItem} />
+        {activeItem && activeItem && (
+          <TodoTasks
+            onEditTitle={onEditTitle}
+            list={activeItem}
+            addTask={addTask}
+            removeTask={removeTask}
+          />
         )}
       </div>
     </div>
