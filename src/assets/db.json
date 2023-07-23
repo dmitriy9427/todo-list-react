@@ -115,6 +115,24 @@
       "text": "Почитать книгу.",
       "completed": false,
       "id": 21
+    },
+    {
+      "listId": 4,
+      "text": "Ремарк",
+      "completed": false,
+      "id": 22
+    },
+    {
+      "listId": 9,
+      "text": "Отжимания.",
+      "completed": false,
+      "id": 23
+    },
+    {
+      "listId": 9,
+      "text": "Приседания.",
+      "completed": false,
+      "id": 24
     }
   ],
   "colors": [

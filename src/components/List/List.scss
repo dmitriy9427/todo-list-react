@@ -2,9 +2,17 @@
   display: grid;
   grid-template-columns: 200px auto;
   column-gap: 60px;
+
   &__list {
     padding-left: 20px;
     $self: ".todo__list";
+    &-header {
+      color: #64c4ed;
+      text-shadow: 2px 2px 2px;
+      font-size: 30px;
+      font-family: "cursive";
+      margin: 0 auto 30px 15px;
+    }
 
     li {
       cursor: pointer;
@@ -48,11 +56,6 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-      }
-
-      &:first-child {
-        text-align: left;
-        margin-bottom: 40px;
       }
 
       &:last-child {
