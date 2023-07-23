@@ -16,9 +16,13 @@ function TodoTasks({ list, onEditTitle, addTask, removeTask }) {
     if (newTitle) {
       onEditTitle(list.id, newTitle);
       axios
-        .patch("http://localhost:3001/lists/" + list.id, {
-          name: newTitle,
-        })
+        .patch(
+          "https://my-json-server.typicode.com/dmitriy9427/json-server/lists/" +
+            list.id,
+          {
+            name: newTitle,
+          }
+        )
         .catch(() => {
           alert("Что то пошло не так. Не удалось обновить название списка.");
         });
@@ -38,7 +42,10 @@ function TodoTasks({ list, onEditTitle, addTask, removeTask }) {
     };
 
     axios
-      .post("http://localhost:3001/tasks", newTask)
+      .post(
+        "https://my-json-server.typicode.com/dmitriy9427/json-server/tasks",
+        newTask
+      )
       .then(({ data }) => {
         addTask(list.id, data);
         toggleFormTask();

@@ -25,10 +25,13 @@ function AddListPopup({ colors, setPopup, popup, addNewItem }) {
   const addItem = () => {
     setIsLoading(true);
     axios
-      .post("http://localhost:3001/lists", {
-        name: inputValue,
-        colorId: selectedColor,
-      })
+      .post(
+        "https://my-json-server.typicode.com/dmitriy9427/json-server/lists",
+        {
+          name: inputValue,
+          colorId: selectedColor,
+        }
+      )
       .then(({ data }) => {
         const color = colors.filter((c) => c.id === selectedColor)[0].name;
         const newObj = { ...data, color: { name: color } };
