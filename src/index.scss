@@ -12,8 +12,8 @@ body {
 }
 
 .todo-app {
-  width: 746px;
-  height: 530px;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 100px);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -21,7 +21,7 @@ body {
   box-shadow: 10px 7px 10px #f4f6f8;
   border: 1px solid #f1f1f1;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: auto;
   font-size: 16px;
 
   &__sidebar {
@@ -68,6 +68,28 @@ body {
     }
     &:active {
       background: darken($color: #4dd599, $amount: 20%);
+    }
+  }
+}
+@media screen and (max-width: 740px) {
+  .todo-app {
+    &__sidebar {
+      width: 160px;
+      font-size: 12px;
+      padding: 30px 5px;
+      margin: 0;
+    }
+
+    li {
+      padding: 2px;
+    }
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .todo-app {
+    &__sidebar {
+      width: 140px;
     }
   }
 }

@@ -6,7 +6,14 @@ import axios from "axios";
 
 import "./TodoTasks.scss";
 
-function TodoTasks({ list, onEditTitle, addTask, removeTask }) {
+function TodoTasks({
+  list,
+  onEditTitle,
+  addTask,
+  deleteTask,
+  editTask,
+  onCompleted,
+}) {
   const [newTask, setNewTask] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
@@ -16,13 +23,9 @@ function TodoTasks({ list, onEditTitle, addTask, removeTask }) {
     if (newTitle) {
       onEditTitle(list.id, newTitle);
       axios
-        .patch(
-          "https://my-json-server.typicode.com/dmitriy9427/json-server/lists/" +
-            list.id,
-          {
-            name: newTitle,
-          }
-        )
+        .patch("http://localhost:3001/lists/" + list.id, {
+          name: newTitle,
+        })
         .catch(() => {
           alert("Что то пошло не так. Не удалось обновить название списка.");
         });
@@ -35,17 +38,14 @@ function TodoTasks({ list, onEditTitle, addTask, removeTask }) {
   }
 
   function addNewTasks() {
-    const newTask = {
+    const obj = {
       listId: list.id,
       text: inputValue,
       completed: false,
     };
 
     axios
-      .post(
-        "https://my-json-server.typicode.com/dmitriy9427/json-server/tasks",
-        newTask
-      )
+      .post("http://localhost:3001/tasks", obj)
       .then(({ data }) => {
         addTask(list.id, data);
         toggleFormTask();
@@ -57,7 +57,7 @@ function TodoTasks({ list, onEditTitle, addTask, removeTask }) {
 
   return (
     <div className="tasks">
-      <h2 className="tasks__title">
+      <h2 style={{ color: list.color.hex }} className="tasks__title">
         {list.name}
         <img
           className="tasks__title-image"
@@ -69,10 +69,15 @@ function TodoTasks({ list, onEditTitle, addTask, removeTask }) {
 
       <ul className="tasks__list">
         {!list.tasks.length && <h3>Задачи отсутствуют</h3>}
-        {list.tasks.map((t) => (
-          <li key={t.id}>
+        {list.tasks.map((t, i) => (
+          <li className={t.completed && "through"} key={t.id}>
             <div className="checkbox">
-              <input id={`task-${t.id}`} type="checkbox" />
+              <input
+                onChange={(e) => onCompleted(list.id, t.id, e.target.checked)}
+                id={`task-${t.id}`}
+                type="checkbox"
+                checked={t.completed}
+              />
               <label htmlFor={`task-${t.id}`}>
                 <svg
                   width="11"
@@ -91,15 +96,19 @@ function TodoTasks({ list, onEditTitle, addTask, removeTask }) {
                 </svg>
               </label>
             </div>
-            <input className="tasks__input" readOnly value={t.text} />
+            <p className="tasks__input">{t.text}</p>
+
             <img
               className="tasks__image-edit"
+              onClick={() => editTask(list.id, t)}
               src={edit}
               alt="Иконка редактирования"
             />
             <img
-              // onClick={onDeleteTask}
               className="tasks__image-delete"
+              onClick={() => {
+                deleteTask(list.id, t.id);
+              }}
               src={delet}
               alt="Иконка удаления"
             />

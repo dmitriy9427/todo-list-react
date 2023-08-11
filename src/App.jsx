@@ -17,14 +17,80 @@ function App() {
     setLists(newLists);
   };
 
-  // удаение списка задач
+  //Удаление задачи
+  const deleteTask = (listId, taskId) => {
+    if (window.confirm("Удалить задачу?")) {
+      const newList = lists.map((item) => {
+        if (item.id === listId) {
+          item.tasks = item.tasks.filter((task) => task.id !== taskId);
+        }
+        return item;
+      });
+      setLists(newList);
+      axios
+        .delete("http://localhost:3001/tasks/" + taskId)
+
+        .catch(() => {
+          alert("Не удалось удалить задачу.");
+        });
+    }
+  };
+
+  // Редактирование задачи
+  const editTask = (listId, taskObj) => {
+    const newText = window.prompt("Напишите новое название", taskObj.text);
+    if (!newText) {
+      return;
+    }
+    const newList = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks.map((task) => {
+          if (taskObj.id === task.id) {
+            taskObj.text = newText;
+          }
+          return task;
+        });
+      }
+      return item;
+    });
+    setLists(newList);
+    axios
+      .patch("http://localhost:3001/tasks/" + taskObj.id, {
+        text: newText,
+      })
+
+      .catch(() => {
+        alert("Не удалось удалить задачу.");
+      });
+  };
+
+  const onCompleted = (listId, taskId, completed) => {
+    const newList = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks.map((task) => {
+          if (task.id === taskId) {
+            task.completed = completed;
+          }
+          return task;
+        });
+      }
+      return item;
+    });
+    setLists(newList);
+    axios
+      .patch("http://localhost:3001/tasks/" + taskId, {
+        completed: completed,
+      })
+      .catch(() => {
+        alert("Не удалось обновить");
+      });
+  };
+
+  // удаение списка задач по заголовку
   const removeItem = (item) => {
     if (window.confirm("Вы действительно хотите удалить?")) {
       axios
-        .delete(
-          "https://my-json-server.typicode.com/dmitriy9427/json-server/lists/" +
-            item.id
-        )
+        .delete("http://localhost:3001/lists/" + item.id)
         .then(() => {
           onRemove(item.id);
         })
@@ -44,10 +110,10 @@ function App() {
     setLists(newTitle);
   }
 
-  function addTask(listId, listObj) {
+  function addTask(listId, taskObj) {
     const newList = lists.map((item) => {
       if (item.id === listId) {
-        item.tasks = [...item.tasks, listObj];
+        item.tasks = [...item.tasks, taskObj];
       }
       return item;
     });
@@ -56,9 +122,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(
-        "https://my-json-server.typicode.com/dmitriy9427/json-server/lists?_expand=color&_embed=tasks"
-      )
+      .get("http://localhost:3001/lists?_expand=color&_embed=tasks")
       .then(({ data }) => {
         setLists(data);
       })
@@ -66,7 +130,7 @@ function App() {
         alert(err);
       });
     axios
-      .get("https://my-json-server.typicode.com/dmitriy9427/json-server/colors")
+      .get("http://localhost:3001/colors")
       .then(({ data }) => {
         setColors(data);
       })
@@ -87,7 +151,10 @@ function App() {
           activeItem={activeItem}
           onEditTitle={onEditTitle}
           addTask={addTask}
-          // removeTask={removeTask}
+          setLists={setLists}
+          deleteTask={deleteTask}
+          editTask={editTask}
+          onCompleted={onCompleted}
         />
       </div>
     </div>

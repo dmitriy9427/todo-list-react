@@ -1,7 +1,8 @@
 .todo {
   display: grid;
-  grid-template-columns: 200px auto;
+  grid-template-columns: fit-content(30%) fit-content(60%);
   column-gap: 60px;
+  align-items: center;
 
   &__list {
     padding-left: 20px;
@@ -73,7 +74,35 @@
       }
     }
   }
-  &__tasks {
-    width: 420px;
+  // &__tasks {
+  //   width: calc(100% - 10%);
+  // }
+}
+
+@media screen and (max-width: 640px) {
+  .todo {
+    column-gap: 30px;
+    &__list {
+      padding-left: 0;
+    }
+    li {
+      i {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .todo {
+    column-gap: 10px;
+    &__list {
+      padding-left: 0;
+    }
+    li {
+      i {
+        margin-right: 4px;
+      }
+    }
   }
 }

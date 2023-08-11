@@ -16,14 +16,16 @@ function List({
   activeItem,
   onEditTitle,
   addTask,
-  removeTask,
+  setLists,
+  deleteTask,
+  editTask,
+  onCompleted,
 }) {
   const [popup, setPopup] = useState(false);
 
   return (
     <div className="todo">
       <ul className="todo__list">
-        <h3 className="todo__list-header">Todo list.</h3>
         {lists
           ? lists.map((task) => (
               <li
@@ -84,16 +86,19 @@ function List({
         popup={popup}
       />
 
-      <div className="todo__tasks">
-        {activeItem && activeItem && (
-          <TodoTasks
-            onEditTitle={onEditTitle}
-            list={activeItem}
-            addTask={addTask}
-            removeTask={removeTask}
-          />
-        )}
-      </div>
+      {/* <div className="todo__tasks"> */}
+      {activeItem && activeItem && (
+        <TodoTasks
+          onEditTitle={onEditTitle}
+          list={activeItem}
+          addTask={addTask}
+          setLists={setLists}
+          deleteTask={deleteTask}
+          editTask={editTask}
+          onCompleted={onCompleted}
+        />
+      )}
+      {/* </div> */}
     </div>
   );
 }
