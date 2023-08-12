@@ -1,5 +1,7 @@
 # todo-list-react
 
+<a href='https://dmitriy9427.github.io/todo-list-react/'>Ссылка на проект.</a>
+
 ## Технологии:
 
 - ReactJS
