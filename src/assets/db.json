@@ -24,6 +24,16 @@
       "name": "Спорт",
       "colorId": 4,
       "id": 9
+    },
+    {
+      "name": "Задачи на завтра.",
+      "colorId": 8,
+      "id": 10
+    },
+    {
+      "name": "Задачи на работу.",
+      "colorId": 7,
+      "id": 11
     }
   ],
   "tasks": [
@@ -37,19 +47,7 @@
       "id": 4,
       "listId": 2,
       "text": "Redux (redux-observable, redux-saga)",
-      "completed": false
-    },
-    {
-      "listId": 9,
-      "text": "Отжимания.",
-      "completed": true,
-      "id": 23
-    },
-    {
-      "listId": 9,
-      "text": "Приседания.",
-      "completed": false,
-      "id": 24
+      "completed": true
     },
     {
       "listId": 2,
@@ -65,51 +63,69 @@
     },
     {
       "listId": 3,
-      "text": "Терминатор. Восстание машин.",
-      "completed": false,
+      "text": "Терминатор 2. Восстание машин.",
+      "completed": true,
       "id": 32
     },
     {
-      "listId": 8,
-      "text": "Убраться дома.",
-      "completed": false,
-      "id": 33
-    },
-    {
-      "listId": 8,
-      "text": "Погладить белье.",
-      "completed": false,
-      "id": 34
-    },
-    {
-      "listId": 8,
-      "text": "Приготовить ужин.",
-      "completed": false,
-      "id": 35
-    },
-    {
       "listId": 4,
-      "text": "Ремарк.",
+      "text": "Ремарк: - \"Триумфальная арка.\"",
       "completed": false,
       "id": 36
     },
     {
       "listId": 4,
-      "text": "Шолохов.",
+      "text": "Шолохов: - \"Поднятая целина.\"",
       "completed": false,
       "id": 37
     },
     {
-      "listId": 9,
-      "text": "Подтягивания.",
-      "completed": true,
-      "id": 38
-    },
-    {
       "listId": 3,
-      "text": "В погоне за счастьем.",
+      "text": "В погоне за счастьем. 123",
       "completed": false,
       "id": 39
+    },
+    {
+      "listId": 9,
+      "text": "Разминка.",
+      "completed": false,
+      "id": 40
+    },
+    {
+      "listId": 9,
+      "text": "Приседания.",
+      "completed": false,
+      "id": 41
+    },
+    {
+      "listId": 9,
+      "text": "Отжимания.",
+      "completed": true,
+      "id": 42
+    },
+    {
+      "listId": 9,
+      "text": "Жим штанги.",
+      "completed": false,
+      "id": 43
+    },
+    {
+      "listId": 10,
+      "text": "Проснуться.",
+      "completed": false,
+      "id": 44
+    },
+    {
+      "listId": 10,
+      "text": "Привести себя в порядок.",
+      "completed": true,
+      "id": 45
+    },
+    {
+      "listId": 11,
+      "text": "выыыы",
+      "completed": false,
+      "id": 46
     }
   ],
   "colors": [

@@ -28,7 +28,10 @@ function App() {
       });
       setLists(newList);
       axios
-        .delete("http://localhost:3001/tasks/" + taskId)
+        .delete(
+          "https://my-json-server.typicode.com/dmitriy9427/json-server/tasks/" +
+            taskId
+        )
 
         .catch(() => {
           alert("Не удалось удалить задачу.");
@@ -55,9 +58,14 @@ function App() {
     });
     setLists(newList);
     axios
-      .patch("http://localhost:3001/tasks/" + taskObj.id, {
-        text: newText,
-      })
+      .patch(
+        "https://my-json-server.typicode.com/dmitriy9427/json-server/tasks/" +
+          taskObj.id,
+        {
+          ...taskObj,
+          text: newText,
+        }
+      )
 
       .catch(() => {
         alert("Не удалось удалить задачу.");
@@ -78,9 +86,13 @@ function App() {
     });
     setLists(newList);
     axios
-      .patch("http://localhost:3001/tasks/" + taskId, {
-        completed: completed,
-      })
+      .patch(
+        "https://my-json-server.typicode.com/dmitriy9427/json-server/tasks/" +
+          taskId,
+        {
+          completed,
+        }
+      )
       .catch(() => {
         alert("Не удалось обновить");
       });
@@ -90,7 +102,10 @@ function App() {
   const removeItem = (item) => {
     if (window.confirm("Вы действительно хотите удалить?")) {
       axios
-        .delete("http://localhost:3001/lists/" + item.id)
+        .delete(
+          "https://my-json-server.typicode.com/dmitriy9427/json-server/lists/" +
+            item.id
+        )
         .then(() => {
           onRemove(item.id);
         })
@@ -122,7 +137,9 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/lists?_expand=color&_embed=tasks")
+      .get(
+        "https://my-json-server.typicode.com/dmitriy9427/json-server/lists?_expand=color&_embed=tasks"
+      )
       .then(({ data }) => {
         setLists(data);
       })
@@ -130,7 +147,7 @@ function App() {
         alert(err);
       });
     axios
-      .get("http://localhost:3001/colors")
+      .get("https://my-json-server.typicode.com/dmitriy9427/json-server/colors")
       .then(({ data }) => {
         setColors(data);
       })

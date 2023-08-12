@@ -27,20 +27,16 @@ function List({
     <div className="todo">
       <ul className="todo__list">
         {lists
-          ? lists.map((task) => (
+          ? lists.map((task, index) => (
               <li
                 className={`${
                   activeItem && activeItem.id === task.id && "active"
                 }`}
                 onClick={onClickItem ? () => onClickItem(task) : null}
-                key={task.id}
+                key={index}
               >
                 <Badge color={task.color.name} />
-
-                <span>
-                  {task.name}
-                  {/* {` (${task.tasks.length})`} */}
-                </span>
+                <span>{task.name}</span>({task.tasks && task.tasks.length})
                 <img
                   onClick={() => removeItem(task)}
                   className="todo__list-delete"
@@ -85,8 +81,6 @@ function List({
         setPopup={setPopup}
         popup={popup}
       />
-
-      {/* <div className="todo__tasks"> */}
       {activeItem && activeItem && (
         <TodoTasks
           onEditTitle={onEditTitle}
@@ -98,7 +92,6 @@ function List({
           onCompleted={onCompleted}
         />
       )}
-      {/* </div> */}
     </div>
   );
 }

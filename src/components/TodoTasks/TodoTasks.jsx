@@ -23,9 +23,13 @@ function TodoTasks({
     if (newTitle) {
       onEditTitle(list.id, newTitle);
       axios
-        .patch("http://localhost:3001/lists/" + list.id, {
-          name: newTitle,
-        })
+        .patch(
+          "https://my-json-server.typicode.com/dmitriy9427/json-server/lists/" +
+            list.id,
+          {
+            name: newTitle,
+          }
+        )
         .catch(() => {
           alert("Что то пошло не так. Не удалось обновить название списка.");
         });
@@ -45,7 +49,10 @@ function TodoTasks({
     };
 
     axios
-      .post("http://localhost:3001/tasks", obj)
+      .post(
+        "https://my-json-server.typicode.com/dmitriy9427/json-server/tasks/",
+        obj
+      )
       .then(({ data }) => {
         addTask(list.id, data);
         toggleFormTask();
@@ -68,52 +75,53 @@ function TodoTasks({
       </h2>
 
       <ul className="tasks__list">
-        {!list.tasks.length && <h3>Задачи отсутствуют</h3>}
-        {list.tasks.map((t, i) => (
-          <li className={t.completed && "through"} key={t.id}>
-            <div className="checkbox">
-              <input
-                onChange={(e) => onCompleted(list.id, t.id, e.target.checked)}
-                id={`task-${t.id}`}
-                type="checkbox"
-                checked={t.completed}
-              />
-              <label htmlFor={`task-${t.id}`}>
-                <svg
-                  width="11"
-                  height="8"
-                  viewBox="0 0 11 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.29999 1.20001L3.79999 6.70001L1.29999 4.20001"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </label>
-            </div>
-            <p className="tasks__input">{t.text}</p>
+        {list.tasks && !list.tasks.length && <h3>Задачи отсутствуют</h3>}
+        {list.tasks &&
+          list.tasks.map((t, i) => (
+            <li className={`${t.completed && "through"}`} key={i}>
+              <div className="checkbox">
+                <input
+                  onChange={(e) => onCompleted(list.id, t.id, e.target.checked)}
+                  id={`task-${t.id}`}
+                  type="checkbox"
+                  checked={t.completed}
+                />
+                <label htmlFor={`task-${t.id}`}>
+                  <svg
+                    width="11"
+                    height="8"
+                    viewBox="0 0 11 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.29999 1.20001L3.79999 6.70001L1.29999 4.20001"
+                      stroke="white"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </label>
+              </div>
+              <p className="tasks__input">{t.text}</p>
 
-            <img
-              className="tasks__image-edit"
-              onClick={() => editTask(list.id, t)}
-              src={edit}
-              alt="Иконка редактирования"
-            />
-            <img
-              className="tasks__image-delete"
-              onClick={() => {
-                deleteTask(list.id, t.id);
-              }}
-              src={delet}
-              alt="Иконка удаления"
-            />
-          </li>
-        ))}
+              <img
+                className="tasks__image-edit"
+                onClick={() => editTask(list.id, t)}
+                src={edit}
+                alt="Иконка редактирования"
+              />
+              <img
+                className="tasks__image-delete"
+                onClick={() => {
+                  deleteTask(list.id, t.id);
+                }}
+                src={delet}
+                alt="Иконка удаления"
+              />
+            </li>
+          ))}
       </ul>
       {!newTask ? (
         <div onClick={toggleFormTask} className="tasks__plus-block">

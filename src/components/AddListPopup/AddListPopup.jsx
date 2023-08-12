@@ -26,18 +26,24 @@ function AddListPopup({ colors, setPopup, popup, addNewItem }) {
     setIsLoading(true);
     axios
       .post(
-        "https://my-json-server.typicode.com/dmitriy9427/json-server/lists",
+        "https://my-json-server.typicode.com/dmitriy9427/json-server/lists/",
         {
           name: inputValue,
           colorId: selectedColor,
         }
       )
       .then(({ data }) => {
-        const color = colors.filter((c) => c.id === selectedColor)[0].name;
-        const newObj = { ...data, color: { name: color } };
+        const color = colors.filter((c) => c.id === selectedColor)[0];
+        const newObj = {
+          ...data,
+          color,
+          tasks: [],
+        };
+
         addNewItem(newObj);
         handleClosePopup();
       })
+      .catch((err) => console.err(err))
       .finally(() => {
         setIsLoading(false);
       });

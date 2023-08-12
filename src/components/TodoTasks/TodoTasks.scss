@@ -1,6 +1,18 @@
 .tasks {
   margin-left: 30px;
   width: 39em;
+  h3 {
+    color: #96a8af;
+    font-family: "Montserrat";
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 39px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f2f2f2;
+    display: flex;
+    align-items: baseline;
+    margin: 0 auto;
+  }
   &__title {
     color: #64c4ed;
     font-family: "Montserrat";
