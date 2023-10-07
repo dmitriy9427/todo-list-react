@@ -1,6 +1,10 @@
 # Список задач.
 
-<a href='https://dmitriy9427.github.io/todo-list-react/'>Ссылка на проект.</a>
+<img src='./src/images/output(video-cutter-js.com).gif'/>
+
+### Ссылки:
+
+<a href='https://dmitriy9427.github.io/todo-list-react/'>Демо версия.</a>
 
 ## Технологии:
 
